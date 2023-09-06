@@ -1,0 +1,34 @@
+version: 2
+updates:
+- package-ecosystem: gomod
+  directory: "/"
+  schedule:
+    interval: "weekly"
+  ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+  groups:
+    third-party:
+      patterns:
+        - "*"
+      exclude-patterns:
+        - "*adevinta*"
+      update-types:
+        - "minor"
+        - "patch"
+    adevinta:
+      patterns:
+        - "*adevinta*"
+  labels:
+    - "dependencies"
+
+- package-ecosystem: "docker"
+  directory: "/"
+  schedule:
+    interval: "weekly"
+  ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+  labels:
+    - "dependencies"
+
